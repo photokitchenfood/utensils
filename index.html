@@ -183,21 +183,20 @@ aside::-webkit-scrollbar-thumb{background:var(--ink-faint);border-radius:2px}
 .landing-color-card{display:flex;align-items:center;gap:8px;padding:7px 13px;background:var(--surface);border:1px solid rgba(0,0,0,.1);border-radius:var(--card-radius);cursor:pointer;transition:background .15s,border-color .15s}
 .landing-color-card:hover{background:var(--tag-bg);border-color:rgba(0,0,0,.18)}
 .landing-color-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.landing-color-name{font-family:"Syne",sans-serif;font-size:15px;font-weight:500;color:var(--ink)}
+.landing-color-name{font-family:"Syne",sans-serif;font-size:16px;font-weight:500;color:var(--ink)}
 .landing-two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
 @media(max-width:860px){.landing-two-col{grid-template-columns:1fr}}
 .landing-cats-grid{display:flex;flex-direction:column;gap:6px}
 .landing-cat-card{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;background:var(--surface);border:1px solid rgba(0,0,0,.08);border-radius:var(--card-radius)}
 .landing-cat-icon{font-size:15px;line-height:1;flex-shrink:0;margin-top:2px}
-.landing-cat-name{font-family:"Syne",sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
-.landing-cat-desc{font-family:"Syne",sans-serif;font-size:13px;font-weight:400;color:#999;line-height:1.3}
-.landing-howto-block{background:var(--surface);border:1px solid rgba(0,0,0,.08);border-radius:var(--card-radius);overflow:hidden;margin-bottom:10px}
-.landing-howto-head{font-family:"Syne",sans-serif;font-size:13px;font-weight:700;color:var(--ink);padding:10px 14px 0;text-transform:uppercase;letter-spacing:.04em}
+.landing-cat-name{font-family:"Syne",sans-serif;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.landing-cat-desc{font-family:"Syne",sans-serif;font-size:14px;font-weight:400;color:#999;line-height:1.3}
+.landing-howto{background:var(--surface);border:1px solid rgba(0,0,0,.08);border-radius:var(--card-radius);padding:4px 0}
 .howto-step{display:flex;gap:12px;align-items:flex-start;padding:10px 14px}
 .howto-step+.howto-step{border-top:1px solid rgba(0,0,0,.06)}
-.howto-step-num{font-family:"DM Mono",monospace;font-size:9px;font-weight:700;color:var(--bg);background:var(--ink);width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
-.howto-step-title{font-family:"Syne",sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
-.howto-step-desc{font-family:"Syne",sans-serif;font-size:12px;font-weight:400;color:#999;line-height:1.4}
+.howto-step-num{font-family:"DM Mono",monospace;font-size:10px;font-weight:700;color:var(--bg);background:var(--ink);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+.howto-step-title{font-family:"Syne",sans-serif;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.howto-step-desc{font-family:"Syne",sans-serif;font-size:14px;font-weight:400;color:#999;line-height:1.4}
 </style>
 </head>
 <body>
@@ -551,14 +550,14 @@ function render() {
       + '<div><div class="landing-section-label">Category Guide</div>'
       + '<div class="landing-cats-grid">' + catCardsHtml + '</div></div>'
       + '<div><div class="landing-section-label">How To Use</div>'
-      + '<div class="landing-howto-block"><div class="landing-howto-head">Catalog</div>' + stepsHtml + '</div>'
+      + '<div class="landing-howto">' + stepsHtml + '</div>'
       + '</div></div></div>';
 
     landing.classList.add('show');
     grid.style.display = 'none';
     count.innerHTML = '<span>&mdash;</span> utensils';
     hdr.style.color = '';
-    hdr.innerHTML = 'Utensils Catalog 2.0' + (updatedStr ? ' <span style="font-family:\'Syne\',sans-serif;font-size:16px;font-weight:500;color:#999;margin-left:10px">/ Last Updated: ' + updatedStr + '</span>' : '');
+    hdr.innerHTML = 'Utensils Catalog 2.0' + (updatedStr ? ' <span style="font-family:\'Syne\',sans-serif;font-size:18px;font-weight:500;color:#999;margin-left:12px">/ Last Updated: ' + updatedStr + '</span>' : '');
     empty.classList.remove('show');
     return;
   }
