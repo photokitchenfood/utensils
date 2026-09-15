@@ -5,7 +5,7 @@ const CATALOG_META = {
       "count": 147
     },
     "black": {
-      "count": 41
+      "count": 42
     },
     "blue": {
       "count": 16
