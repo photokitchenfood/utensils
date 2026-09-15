@@ -9,6 +9,7 @@
 <script src="data/meta.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@font-face{font-family:"Engineer Heavy";src:url('assets/fonts/engineer-heavy.ttf') format('truetype');font-weight:normal;font-style:normal;font-display:swap}
 :root{
   --bg:#F5F2EE;--surface:#FFFFFF;--ink:#1A1A18;--ink-soft:#6B6860;
   --ink-faint:#C4C0B8;--tag-bg:#EFEFEB;--tag-border:#DEDAD4;
@@ -18,7 +19,8 @@ body{font-family:"DM Mono",monospace;background:var(--bg);color:var(--ink);min-h
 
 /* HEADER */
 header{background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 24px;position:sticky;top:0;z-index:100}
-.logo{font-family:"Barlow Semi Condensed",sans-serif;font-size:23px}
+.logo{font-family:"Engineer Heavy","Barlow Semi Condensed",sans-serif;font-size:23px;cursor:pointer}
+.logo:hover{opacity:.82}
 .header-meta{font-size:11px;color:#888;letter-spacing:.08em;text-transform:uppercase}
 .header-right{display:flex;align-items:center;gap:12px}
 
@@ -109,7 +111,7 @@ aside::-webkit-scrollbar-thumb{background:var(--ink-faint);border-radius:2px}
 #pw-gate{position:fixed;inset:0;background:#1A1A18;z-index:9999;display:flex;align-items:center;justify-content:center}
 #pw-gate.hidden{display:none}
 .pw-box{display:flex;flex-direction:column;align-items:center;gap:20px;width:320px}
-.pw-logo{font-family:"Barlow Semi Condensed",sans-serif;font-size:26px;color:#fff;margin-bottom:4px}
+.pw-logo{font-family:"Engineer Heavy","Barlow Semi Condensed",sans-serif;font-size:26px;color:#fff;margin-bottom:4px}
 .pw-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#666;font-family:"DM Mono",monospace}
 .pw-input-wrap{width:100%;position:relative}
 #pw-input{width:100%;background:#2A2A28;border:1.5px solid #3A3A38;border-radius:6px;padding:11px 44px 11px 14px;font-family:"DM Mono",monospace;font-size:13px;color:#fff;outline:none;transition:border-color .15s;letter-spacing:.08em}
@@ -177,7 +179,8 @@ aside::-webkit-scrollbar-thumb{background:var(--ink-faint);border-radius:2px}
 #landing-banner{display:none}
 #landing-banner.show{display:block}
 .landing-wrap{padding:0 0 40px}
-#landing-banner-img{width:100%;height:300px;object-fit:cover;object-position:center 45%;border-radius:var(--card-radius);display:block;margin-bottom:28px}
+#landing-banner-img{width:100%;aspect-ratio:2200/1008;object-fit:contain;border-radius:var(--card-radius);display:block;margin-bottom:28px;background:var(--tag-bg)}
+@media(min-width:1440px){#landing-banner-img{height:450px;aspect-ratio:unset;object-fit:cover}}
 .landing-section-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;margin-top:4px}
 .landing-colors-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
 .landing-color-card{display:flex;align-items:center;gap:8px;padding:7px 13px;background:var(--surface);border:1px solid rgba(0,0,0,.1);border-radius:var(--card-radius);cursor:pointer;transition:background .15s,border-color .15s}
@@ -856,15 +859,21 @@ document.getElementById('archive-chip').addEventListener('click', function(e) {
   e.target.classList.toggle('active', fState.archiveOnly);
   render();
 });
-document.getElementById('reset').addEventListener('click', function() {
+function resetToLanding() {
   fState = { search: '', category: 'all', qty: 'all', archiveOnly: false, sort: 'default' };
   document.getElementById('search').value = '';
   document.getElementById('sort').value = 'default';
   document.querySelectorAll('#cat-filters .chip').forEach(function(c) { c.classList.toggle('active', c.getAttribute('data-cat') === 'all'); });
   document.querySelectorAll('#qty-filters .chip').forEach(function(c) { c.classList.toggle('active', c.getAttribute('data-qty') === 'all'); });
   document.getElementById('archive-chip').classList.remove('active');
+  document.getElementById('color-select').value = '';
+  curColorCfg = null; utensils = []; IMAGES = {};
+  applyColorUI(null);
   render();
-});
+}
+
+document.getElementById('reset').addEventListener('click', resetToLanding);
+document.querySelector('.logo').addEventListener('click', resetToLanding);
 
 // ── SAVE / EXPORT ──
 function markDirty() {
