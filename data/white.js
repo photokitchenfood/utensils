@@ -174,7 +174,7 @@ utensils = [
   {
     "id": "w-ssp-1",
     "color": "White",
-    "category": "Serving Spoons",
+    "category": "Spoons & Forks",
     "name": "Serving Spoon, White with Dark-Tipped Handle",
     "qty": 1,
     "archive": false,
